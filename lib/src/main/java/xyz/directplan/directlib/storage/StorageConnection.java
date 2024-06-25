@@ -19,7 +19,7 @@ public abstract class StorageConnection {
 
     }
 
-    public abstract void connect();
+    public abstract void connect(String host, String user, String password,String database);
 
     public abstract void close();
 }

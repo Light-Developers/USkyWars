@@ -35,7 +35,7 @@ public class Storage {
         plugin.getLogger().info("Using " + storageName + " database for storing game data.");
 
         plugin.getLogger().log(Level.WARNING, "Connecting to the " + storageName + " database...");
-        storageConnection.connect();
+        storageConnection.connect(credentials.getHost(),credentials.getUsername(),credentials.getPassword(),credentials.getDatabase());
     }
 
     public void close() {

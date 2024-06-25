@@ -13,24 +13,25 @@ import java.util.UUID;
 public class MongoStorageConnection extends StorageConnection {
 
     private final SkyWarsPlugin plugin;
+    private final UserMongoStorage userMongoStorage;
 
     public MongoStorageConnection(SkyWarsPlugin plugin, ConnectionCredentials credentials) {
         super("MongoDB", credentials);
-
+        this.userMongoStorage = new UserMongoStorage();
         this.plugin = plugin;
     }
 
     @Override
-    public void connect() {
-
+    public void connect(String host, String user, String password,String database) {
+        userMongoStorage.createTable(host,user,password,database);
     }
 
     public User loadUser(UUID uuid) {
-        return new User(uuid);
+        return userMongoStorage.load(uuid);
     }
 
     public void saveUser(User user) {
-
+        userMongoStorage.save(user);
     }
 
     @Override
